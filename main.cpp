@@ -31,6 +31,12 @@ struct Bitmap
 	Bitmap(uint32_t width, uint32_t height) : Width(width), Height(height) { }
 };
 
+inline void Clear()
+{
+	cout << "\x1b[2J\x1b[H";
+	cout.flush();
+}
+
 inline void SetColor(short ansiCode, Pixel& p)
 {
 	cout << "\x1b[" << ansiCode << ";2;" << (short)p.R << ";" << (short)p.G << ";" << (short)p.B << "m";
@@ -146,10 +152,12 @@ int main(int argc, char* argv[])
 	if (argc <= 1)
 		return 0;
 	
+	Clear();
 	unique_ptr<Bitmap> bmp(LoadImage(argv[1]));
 	PrintAsAnsi(bmp.get());
 	
 	NewLine();
+	cout << endl << endl;
 	Reset();
 	
 	return 0;
