@@ -69,7 +69,7 @@ inline void Reset()
 
 inline void NewLine() 
 {
-	cout << "\x1b[E";
+	cout << endl;
 }
 
 void RenderPixels(Pixel& top, Pixel& bottom)
@@ -157,7 +157,6 @@ int main(int argc, char* argv[])
 	PrintAsAnsi(bmp.get());
 	
 	NewLine();
-	cout << endl << endl;
 	Reset();
 	
 	return 0;
